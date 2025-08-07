@@ -1,7 +1,33 @@
 async function toggleDialog(dialogId) {
     const viewTransitionClass = 'vt-element-animation'
     const viewTransitionClassClosing = 'vt-element-animation-closing'
+
+    // Flujo de cerrado
+    if (!dialogId) {
+        const openDialog = document.querySelector('dialog[open]')
+        const originElement = document.querySelector('[origin-element]')
+
+        openDialog.style.viewTransitionName = 'vt-shared'
+        openDialog.style.viewTransitionClass = viewTransitionClassClosing
+
+        const viewTransition = document.startViewTransition(() => {
+            originElement.style.viewTransitionName = 'vt-shared'
+            originElement.style.viewTransitionClass = viewTransitionClassClosing
+
+            openDialog.style.viewTransitionName = ''
+            openDialog.style.viewTransitionClass = ''
+
+            openDialog.close()
+        })
+        await viewTransition.finished
+
+        originElement.style.viewTransitionName = ''
+        originElement.style.viewTransitionClass = ''
+
+        return
+    }
     
+    // Flujo de apertura
     const dialog = document.getElementById(dialogId)
     const originElement = event.currentTarget
 
@@ -18,12 +44,4 @@ async function toggleDialog(dialogId) {
         dialog.showModal()
     })
     await viewTransition.finished
-    
-    
-    // if (!dialogId) {
-    //     const openDialog = document.querySelector('dialog[open]')
-    //     openDialog.close()
-    
-    //     return
-    // }
 }
