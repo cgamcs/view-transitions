@@ -23,6 +23,7 @@ async function toggleDialog(dialogId) {
 
         originElement.style.viewTransitionName = ''
         originElement.style.viewTransitionClass = ''
+        originElement.removeAttribute('origin-element')
 
         return
     }

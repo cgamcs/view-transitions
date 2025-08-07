@@ -10,10 +10,29 @@
 <body>
     <dialog id="dialog-messages">
         <button class="close-button" onclick="toggleDialog()">❌</button>
+        <h1>Mensajes</h1>
+    </dialog>
+
+    <dialog id="dialog-cats">
+        <button class="close-button" onclick="toggleDialog()">❌</button>
+        <h1>Gatos</h1>
+    </dialog>
+
+    <dialog id="dialog-dogs">
+        <button class="close-button" onclick="toggleDialog()">❌</button>
+        <h1>Perros</h1>
     </dialog>
     
     <button onclick="toggleDialog('dialog-messages')">
         Ver mensajes
+    </button>
+
+    <button onclick="toggleDialog('dialog-cats')">
+        Ver Gatos
+    </button>
+
+    <button onclick="toggleDialog('dialog-dogs')">
+        Ver Perros
     </button>
 
     <script src="animations.js"></script>
